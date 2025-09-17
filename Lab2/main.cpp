@@ -15,7 +15,7 @@ int main()
 	Set<char> s4{ 'a','b','c' };
 	Set<char> s5{ 'd','e','f', 'g' };
 	Set<char> s6{ 'd','e','f' };
-	Set<Set<char>> abc{ {},{'a'},{'b'},{'c'},{'a','b'},{'a','c'},{'b','c'},{'a','b','c'} };
+	Set<Set<char>> abc{ {},{'a','b','c'} };
 
 	Set<Set<char>> ss{ s4,s5 };  // Set of Sets s4 and s5
 	Set<Set<char>> ss2{ s4,s6 };  // Set of Sets s4 and s5

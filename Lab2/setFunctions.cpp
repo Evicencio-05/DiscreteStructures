@@ -78,11 +78,7 @@ Set<char> setDiff(const Set<char>& s1, const Set<char>& s2)
 // Returns a set that is the symmetric difference of the two sets s1 and s2
 Set<char> setSymDiff(const Set<char>& s1, const Set<char>& s2)
 {
-	Set<char> result;
-
-	result = setUnion(setDiff(s1,s2), setDiff(s2,s1));
-
-	return result;
+	return setUnion(setDiff(s1,s2), setDiff(s2,s1));
 }
 
 // Returns true if s1 is a subset of s2
@@ -108,6 +104,7 @@ bool isSubSet(const Set<char>& s1, const Set<char>& s2)
 // Returns true if s1 is a proper subset of s2
 bool isProperSubSet(const Set<char>& s1, const Set<char>& s2)
 {
+	// Base case: Cardinality can't be equal to or greater.
 	if (s1.cardinality() >= s2.cardinality()) return false;
 
 	size_t set1_current = 0;
