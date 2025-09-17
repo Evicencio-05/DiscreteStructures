@@ -14,10 +14,12 @@ int main()
 	Set<char> s3{ 'a','b','c','d','e','f' };
 	Set<char> s4{ 'a','b','c' };
 	Set<char> s5{ 'd','e','f', 'g' };
+	Set<char> s6{ 'd','e','f' };
 	Set<Set<char>> abc{ {},{'a'},{'b'},{'c'},{'a','b'},{'a','c'},{'b','c'},{'a','b','c'} };
 
 	Set<Set<char>> ss{ s4,s5 };  // Set of Sets s4 and s5
-
+	Set<Set<char>> ss2{ s4,s6 };  // Set of Sets s4 and s5
+	
 	cout << boolalpha;   // makes the printing of a boolean print true or false instead of 1 or 0
 
 	// Testing your functions by printing the results of calling each. You will need to verify if
@@ -32,6 +34,7 @@ int main()
 	
 	cout << "\nThe Intersection of sets s1 and s2\n\n";
 	cout << setIntersection(s1, s2) << endl;
+	cout << setIntersection(s4, s5) << endl;
 	
 	cout << "The Difference of sets s1 and s2\n\n";
 	cout << setDiff(s1, s2) << endl;
@@ -62,6 +65,8 @@ int main()
 	cout << isPartition(ss, s3) << endl;
 	cout << "\nDo the sets in abc make a Partition of s4\n";
 	cout << isPartition(abc, s4) << endl;
+	cout << "\nDo the sets in ss2 make a Partition of s3\n";
+	cout << isPartition(ss2, s3) << endl;
 	
 	cout << "\nThe power set P(s4)\n";
 	cout << PowerSet(s4) << endl;

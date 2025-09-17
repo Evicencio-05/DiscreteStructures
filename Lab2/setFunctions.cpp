@@ -8,21 +8,29 @@ Set<char> setUnion(const Set<char>& s1, const Set<char>& s2)
 {
 	Set<char> result;
 
-	size_t set1_current = 0;
-	size_t set1_cardinality = s1.cardinality();
-	
-	while (set1_current < set1_cardinality)
-	{
-		result.insertElement(s1[set1_current++]);
-	}
-	
-	size_t set2_current = 0;
-	size_t set2_cardinality = s2.cardinality();
+	size_t i = 0, j = 0;
+    size_t s1_cardinality = s1.cardinality();
+    size_t s2_cardinality = s2.cardinality();
 
-	while (set2_current < set2_cardinality)
-	{
-		result.insertElement(s2[set2_current++]);
-	}
+    while (i < s1_cardinality && j < s2_cardinality)
+    {
+        if (s1[i] < s2[j]) {
+            result.insertElement(s1[i++]);
+        } else if (s2[j] < s1[i]) {
+            result.insertElement(s2[j++]);
+        } else { // Elements are equal
+            result.insertElement(s1[i++]);
+            j++;
+        }
+    }
+
+    while (i < s1_cardinality) {
+        result.insertElement(s1[i++]);
+    }
+
+    while (j < s2_cardinality) {
+        result.insertElement(s2[j++]);
+    }
 
 	return result;
 }
@@ -146,5 +154,18 @@ Set<Set<char>> PowerSet(const Set<char>& s)
 // Returns true if the sets in p make up a Partition of set s
 bool isPartition(const Set<Set<char>>& p, const Set<char>& s)
 {
-	return (p == PowerSet(s)) ? true : false;
+	size_t p_cardinality = p.cardinality();
+	Set<char> union_set;
+	for (size_t i = 0; i < p_cardinality; ++i)
+	{
+		// False if the intersection between the union set and current set is greater than 0
+		if (setIntersection(union_set, p[i]).cardinality() > 0) return false;
+		
+		// False if the current set is an empty set
+		if (p[i].cardinality() == 0) return false;
+		
+		union_set = setUnion(union_set, p[i]);
+	}
+	
+	return (union_set == s) ? true : false;
 }
