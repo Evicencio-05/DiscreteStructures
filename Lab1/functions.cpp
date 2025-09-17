@@ -7,6 +7,9 @@
 
 using namespace std;
 
+static double INCHES_IN_A_METER = 39.37;
+static double SPEED_CONVERSION = 2.2374;
+
 // Implement the functions from functions.h here
 
 // Asks user for input using prompt
@@ -33,13 +36,13 @@ double getInput(const std::string& prompt)
 // converts inches to meters
 double convertDistance(double inches)
 {
-    return inches / 39.3701;
+    return inches / INCHES_IN_A_METER;
 }
 
 // converts meters/second to miles/hour
 double convertSpeed(double metersPerSec)
 {
-    return (metersPerSec * 1609.34) / 3600; 
+    return metersPerSec * SPEED_CONVERSION; 
 }
 
 // determines velocity (meters/second) using the distance (in meters)
